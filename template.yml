@@ -3,7 +3,7 @@ Transform: AWS::Serverless-2016-10-31
 Description: An AWS Serverless Application Model template describing your Docker-based function.
 
 Resources:
-  hopBeResource:
+  graalvmDemoResource:
     Type: AWS::Serverless::Function
     Properties:
       FunctionName: hop-be-function-native-image
