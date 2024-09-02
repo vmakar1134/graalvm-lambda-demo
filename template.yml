@@ -1,13 +1,13 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: An AWS Serverless Application Model template describing your Docker-based function.
+Parameters:
+  ImageUri:
+    Type: String
+    Default: 559050235894.dkr.ecr.us-east-1.amazonaws.com/graalvm-demo:latest
+    Description: The URI of the Docker image to use for the Lambda function.
 
 Resources:
-  Parameters:
-    ImageUri:
-      Type: String
-      Default: 559050235894.dkr.ecr.us-east-1.amazonaws.com/graalvm-demo:latest
-      Description: The URI of the Docker image to use for the Lambda function.
   graalvmDemoResource:
     Type: AWS::Serverless::Function
     Properties:
