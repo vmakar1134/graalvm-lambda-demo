@@ -44,12 +44,12 @@ jobs:
       - name: Set FULL_IMAGE_NAME
         run: echo "FULL_IMAGE_NAME=${{ env.REGISTRY }}/${{env.REPOSITORY}}:${{env.IMAGE_TAG}}" >> $GITHUB_ENV
 
-      - name: Build native image
-        run: mvn -Pnative clean spring-boot:build-image -Dspring-boot.build-image.imageName=${{ env.FULL_IMAGE_NAME }}
-
-      - name: Push docker image to Amazon ECR Public
-        run: |
-          docker push ${{ env.FULL_IMAGE_NAME }}
+#      - name: Build native image
+#        run: mvn -Pnative clean spring-boot:build-image -Dspring-boot.build-image.imageName=${{ env.FULL_IMAGE_NAME }}
+#
+#      - name: Push docker image to Amazon ECR Public
+#        run: |
+#          docker push ${{ env.FULL_IMAGE_NAME }}
 
       - name: Set up AWS SAM CLI
         uses: aws-actions/setup-sam@v1
@@ -67,4 +67,5 @@ jobs:
             --template-file packaged.yml \
             --stack-name graalvm-lambda-stack \
             --capabilities CAPABILITY_IAM \
-            --region us-east-1
+            --region us-east-1 \
+            --image-repository 559050235894.dkr.ecr.us-east-1.amazonaws.com/graalvm-demo
