@@ -61,7 +61,6 @@ jobs:
             --output-template-file packaged.yml \
             --s3-bucket graalvm-lambda-builds \
             --image-repository 559050235894.dkr.ecr.us-east-1.amazonaws.com/graalvm-demo \
-            --parameter-overrides ImageUri=${{ env.FULL_IMAGE_NAME }}          
 
       - name: Deploy SAM application
         run: |
