@@ -36,3 +36,5 @@ Resources:
                   arn:aws:logs:us-east-1:559050235894:log-group:/aws/lambda/graalvm-demo:*
       SnapStart:
         ApplyOn: None
+      Metadata:
+        LastUpdated: "2024-09-02T12:00:00Z"

@@ -54,6 +54,11 @@ jobs:
       - name: Set up AWS SAM CLI
         uses: aws-actions/setup-sam@v1
 
+      - name: Update Metadata LastUpdated timestamp in template.yml
+        run: |
+          DATE=$(date +%Y-%m-%dT%H:%M:%S)
+          sed -i "s|LastUpdated: .*|LastUpdated: \"$DATE\"|" template.yml
+
       - name: Package SAM application
         run: |
           sam package \
