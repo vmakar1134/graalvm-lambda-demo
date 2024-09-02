@@ -69,4 +69,5 @@ jobs:
             --stack-name graalvm-lambda-stack \
             --capabilities CAPABILITY_IAM \
             --region us-east-1 \
-            --image-repository 559050235894.dkr.ecr.us-east-1.amazonaws.com/graalvm-demo
+            --image-repository 559050235894.dkr.ecr.us-east-1.amazonaws.com/graalvm-demo \
+            --force-upload
