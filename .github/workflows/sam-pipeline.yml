@@ -39,7 +39,7 @@ jobs:
         run: |
           echo "REGISTRY=${{ steps.login-ecr.outputs.registry }}" >> $GITHUB_ENV
           echo "REPOSITORY=graalvm-demo" >> $GITHUB_ENV
-          echo "IMAGE_TAG=latest" >> $GITHUB_ENV
+          echo "IMAGE_TAG=$(date +%Y%m%d%H%M%S)" >> $GITHUB_ENV
 
       - name: Set FULL_IMAGE_NAME
         run: echo "FULL_IMAGE_NAME=${{ env.REGISTRY }}/${{env.REPOSITORY}}:${{env.IMAGE_TAG}}" >> $GITHUB_ENV
@@ -54,18 +54,14 @@ jobs:
       - name: Set up AWS SAM CLI
         uses: aws-actions/setup-sam@v1
 
-      - name: Update Metadata LastUpdated timestamp in template.yml
-        run: |
-          DATE=$(date +%Y-%m-%dT%H:%M:%S)
-          sed -i "s|LastUpdated: .*|LastUpdated: \"$DATE\"|" template.yml
-
       - name: Package SAM application
         run: |
           sam package \
             --template-file template.yml \
             --output-template-file packaged.yml \
             --s3-bucket graalvm-lambda-builds \
-            --image-repository 559050235894.dkr.ecr.us-east-1.amazonaws.com/graalvm-demo
+            --image-repository 559050235894.dkr.ecr.us-east-1.amazonaws.com/graalvm-demo \
+            --parameter-overrides ImageUri=${{ env.FULL_IMAGE_NAME }}          
 
       - name: Deploy SAM application
         run: |
@@ -75,4 +71,5 @@ jobs:
             --capabilities CAPABILITY_IAM \
             --region us-east-1 \
             --image-repository 559050235894.dkr.ecr.us-east-1.amazonaws.com/graalvm-demo \
+            --parameter-overrides ImageUri=${{ env.FULL_IMAGE_NAME }} \
             --force-upload

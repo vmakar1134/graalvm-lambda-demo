@@ -3,6 +3,11 @@ Transform: AWS::Serverless-2016-10-31
 Description: An AWS Serverless Application Model template describing your Docker-based function.
 
 Resources:
+  Parameters:
+    ImageUri:
+      Type: String
+      Default: 559050235894.dkr.ecr.us-east-1.amazonaws.com/graalvm-demo:latest
+      Description: The URI of the Docker image to use for the Lambda function.
   graalvmDemoResource:
     Type: AWS::Serverless::Function
     Properties:
@@ -12,7 +17,7 @@ Resources:
       Timeout: 90
       Architectures:
         - x86_64
-      ImageUri: 559050235894.dkr.ecr.us-east-1.amazonaws.com/graalvm-demo:latest
+      ImageUri: !Ref ImageUri
       EphemeralStorage:
         Size: 512
       EventInvokeConfig:
@@ -36,5 +41,3 @@ Resources:
                   arn:aws:logs:us-east-1:559050235894:log-group:/aws/lambda/graalvm-demo:*
       SnapStart:
         ApplyOn: None
-      Metadata:
-        LastUpdated: "2024-09-02T12:00:00Z"
