@@ -391,7 +391,7 @@
   }]},
   "bundles":[{
     "name":"jakarta.servlet.LocalStrings",
-    "locales":[""]
+    "locales":["und"]
   }, {
     "name":"jakarta.servlet.http.LocalStrings",
     "locales":["", "und"]
@@ -400,7 +400,7 @@
     "locales":["", "und"]
   }, {
     "name":"org.apache.catalina.authenticator.jaspic.LocalStrings",
-    "locales":[""]
+    "locales":["und"]
   }, {
     "name":"org.apache.catalina.connector.LocalStrings",
     "locales":["", "und"]
@@ -448,7 +448,7 @@
     "locales":["", "und"]
   }, {
     "name":"org.apache.coyote.http11.filters.LocalStrings",
-    "locales":[""]
+    "locales":["und"]
   }, {
     "name":"org.apache.naming.LocalStrings",
     "locales":["", "und"]
