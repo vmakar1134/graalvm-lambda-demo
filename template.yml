@@ -36,6 +36,3 @@ Resources:
                   arn:aws:logs:us-east-1:559050235894:log-group:/aws/lambda/graalvm-demo:*
       SnapStart:
         ApplyOn: None
-      RuntimeManagementConfig:
-        UpdateRuntimeOn: Auto
-
