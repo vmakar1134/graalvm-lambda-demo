@@ -8,6 +8,7 @@ public class GraalvmDemoApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(GraalvmDemoApplication.class, args);
+        System.out.println("Application started");
     }
 
 }
