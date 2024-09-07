@@ -8,6 +8,8 @@ import static org.springframework.aot.hint.MemberCategory.INVOKE_PUBLIC_METHODS;
 import static org.springframework.aot.hint.MemberCategory.PUBLIC_FIELDS;
 
 import com.amazonaws.serverless.proxy.model.HttpApiV2AuthorizerMap;
+import com.amazonaws.serverless.proxy.model.HttpApiV2AuthorizerMap.HttpApiV2AuthorizerDeserializer;
+import com.amazonaws.serverless.proxy.model.HttpApiV2AuthorizerMap.HttpApiV2AuthorizerSerializer;
 import com.amazonaws.serverless.proxy.model.HttpApiV2HttpContext;
 import com.amazonaws.serverless.proxy.model.HttpApiV2JwtAuthorizer;
 import com.amazonaws.serverless.proxy.model.HttpApiV2ProxyRequest;
@@ -25,6 +27,8 @@ public class GraalVmRuntimeHints implements RuntimeHintsRegistrar {
         registerClass(hints, HttpApiV2HttpContext.class);
         registerClass(hints, HttpApiV2AuthorizerMap.class);
         registerClass(hints, HttpApiV2JwtAuthorizer.class);
+        registerClass(hints, HttpApiV2AuthorizerDeserializer.class);
+        registerClass(hints, HttpApiV2AuthorizerSerializer.class);
     }
 
     private void registerClass(RuntimeHints hints, Class<?> clazz) {
