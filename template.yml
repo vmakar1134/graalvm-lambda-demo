@@ -17,7 +17,7 @@ Resources:
       Timeout: 90
       Architectures:
         - x86_64
-      ImageUri: !Ref ImageUri
+      ImageUri: 559050235894.dkr.ecr.us-east-1.amazonaws.com/graalvm-demo:20240907160249
       EphemeralStorage:
         Size: 512
       EventInvokeConfig:
