@@ -6,6 +6,9 @@ WORKDIR /build
 # Copy the app source code into build directory
 COPY . /build
 
+# Make the Maven wrapper executable
+RUN chmod +x ./mvnw
+
 # Compile to native image
 RUN ./mvnw clean --no-transfer-progress -Pnative native:compile -DskipTests
 
