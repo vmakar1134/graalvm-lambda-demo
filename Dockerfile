@@ -1,23 +1,35 @@
-# Stage 1: Build the native binary using GraalVM
-FROM container-registry.oracle.com/graalvm/native-image:21 AS builder
+FROM ghcr.io/graalvm/graalvm-community:21 AS builder
 
-# Set the working directory
-WORKDIR /app
+# Set the working directory to /build
+WORKDIR /build
 
-# Copy the project files into the builder stage
-COPY . .
+# Copy the app source code into build directory
+COPY . /build
 
-# Grant execution permissions to the Maven Wrapper
-RUN chmod +x ./mvnw
+# Compile to native image
+RUN ./mvnw clean --no-transfer-progress -Pnative native:compile -DskipTests
 
-# Build the native image
-RUN ./mvnw -Pnative native:compile -DskipTests
+# Stage 2: Runtime stage
+FROM public.ecr.aws/amazonlinux/amazonlinux:2023
 
-# Stage 2: Create the final AWS Lambda image with the native binary
-FROM public.ecr.aws/amazonlinux/amazonlinux:2023-minimal
+# Update OS and install some necessary dependencies
+RUN yum -y update \
+    && yum install -y unzip tar gzip bzip2-devel ed gcc gcc-c++ gcc-gfortran \
+    less libcurl-devel openssl openssl-devel readline-devel xz-devel \
+    zlib-devel glibc-static zlib-static \
+    && rm -rf /var/cache/yum
 
-# Copy the native binary from the builder stage
-COPY --from=builder /app/target/graalvm-demo /native-image
+# Copy bytecode into the path to your Lambda function code as per https://repost.aws/knowledge-center/lambda-container-images
+COPY --from=builder /build/target/graalvm-demo ${LAMBDA_TASK_ROOT}/
 
-# Set the native binary as the entry point
-ENTRYPOINT ["/native-image"]
+# Set permission
+RUN chmod +x ${LAMBDA_TASK_ROOT}/
+
+# Copy bootstrap into dynamic lambda path
+COPY --from=builder /build/bootstrap ${LAMBDA_TASK_ROOT}/
+
+# Set permission
+RUN chmod +x ${LAMBDA_TASK_ROOT}/
+
+# Set command to run bytecode
+CMD ["./graalvm-demo"]
