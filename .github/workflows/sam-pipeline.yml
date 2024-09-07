@@ -35,6 +35,12 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
 
+      - uses: graalvm/setup-graalvm@v1
+        with:
+          java-version: '21'
+          distribution: 'graalvm'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Prepare environment variables
         run: |
           echo "REGISTRY=${{ steps.login-ecr.outputs.registry }}" >> $GITHUB_ENV
@@ -45,11 +51,10 @@ jobs:
         run: echo "FULL_IMAGE_NAME=${{ env.REGISTRY }}/${{env.REPOSITORY}}:${{env.IMAGE_TAG}}" >> $GITHUB_ENV
 
       - name: Build native image
-        run: mvn -Pnative clean spring-boot:build-image -Dspring-boot.build-image.imageName=${{ env.FULL_IMAGE_NAME }}
+        run: docker build . -t ${{ env.FULL_IMAGE_NAME }}
 
       - name: Push docker image to Amazon ECR Public
-        run: |
-          docker push ${{ env.FULL_IMAGE_NAME }}
+        run: docker push ${{ env.FULL_IMAGE_NAME }}
 
       - name: Set up AWS SAM CLI
         uses: aws-actions/setup-sam@v1
