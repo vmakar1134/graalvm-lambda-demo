@@ -17,7 +17,7 @@ RUN ./mvnw -Pnative native:compile -DskipTests
 FROM public.ecr.aws/amazonlinux/amazonlinux:2023-minimal
 
 # Copy the native binary from the builder stage
-COPY --from=builder /app/target/graalvm-demo /function
+COPY --from=builder /app/target/graalvm-demo /native-image
 
 # Set the native binary as the entry point
-ENTRYPOINT ["/function"]
+ENTRYPOINT ["/native-image"]

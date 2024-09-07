@@ -30,6 +30,7 @@
     <java.version>21</java.version>
     <maven.compiler.source>21</maven.compiler.source>
     <maven.compiler.target>21</maven.compiler.target>
+    <aws-lambda-java-runtime-interface-client.version>2.3.2</aws-lambda-java-runtime-interface-client.version>
   </properties>
   <dependencies>
     <dependency>
@@ -38,18 +39,8 @@
     </dependency>
     <dependency>
       <groupId>com.amazonaws</groupId>
-      <artifactId>aws-lambda-java-core</artifactId>
-      <version>1.2.3</version>
-    </dependency>
-    <dependency>
-      <groupId>com.amazonaws</groupId>
-      <artifactId>aws-lambda-java-events</artifactId>
-      <version>3.11.0</version>
-    </dependency>
-    <dependency>
-      <groupId>com.amazonaws</groupId>
       <artifactId>aws-lambda-java-runtime-interface-client</artifactId>
-      <version>2.3.2</version>
+      <version>${aws-lambda-java-runtime-interface-client.version}</version>
     </dependency>
   </dependencies>
 
