@@ -7,7 +7,11 @@ import static org.springframework.aot.hint.MemberCategory.INVOKE_PUBLIC_CONSTRUC
 import static org.springframework.aot.hint.MemberCategory.INVOKE_PUBLIC_METHODS;
 import static org.springframework.aot.hint.MemberCategory.PUBLIC_FIELDS;
 
+import com.amazonaws.serverless.proxy.model.HttpApiV2AuthorizerMap;
+import com.amazonaws.serverless.proxy.model.HttpApiV2HttpContext;
+import com.amazonaws.serverless.proxy.model.HttpApiV2JwtAuthorizer;
 import com.amazonaws.serverless.proxy.model.HttpApiV2ProxyRequest;
+import com.amazonaws.serverless.proxy.model.HttpApiV2ProxyRequestContext;
 import org.springframework.aot.hint.RuntimeHints;
 import org.springframework.aot.hint.RuntimeHintsRegistrar;
 
@@ -16,13 +20,23 @@ public class GraalVmRuntimeHints implements RuntimeHintsRegistrar {
     @Override
     public void registerHints(RuntimeHints hints, ClassLoader classLoader) {
         hints.reflection().registerType(HttpLambdaHandler.class);
-        hints.reflection().registerType(HttpApiV2ProxyRequest.class, hint -> hint.withMembers(
-            INVOKE_DECLARED_CONSTRUCTORS,
-            INVOKE_PUBLIC_CONSTRUCTORS,
-            INVOKE_DECLARED_METHODS,
-            INVOKE_PUBLIC_METHODS,
-            DECLARED_FIELDS,
-            PUBLIC_FIELDS)
+        registerClass(hints, HttpApiV2ProxyRequest.class);
+        registerClass(hints, HttpApiV2ProxyRequestContext.class);
+        registerClass(hints, HttpApiV2HttpContext.class);
+        registerClass(hints, HttpApiV2AuthorizerMap.class);
+        registerClass(hints, HttpApiV2JwtAuthorizer.class);
+    }
+
+    private void registerClass(RuntimeHints hints, Class<?> clazz) {
+        hints.reflection().registerType(clazz, hint ->
+            hint.withMembers(
+                INVOKE_DECLARED_CONSTRUCTORS,
+                INVOKE_PUBLIC_CONSTRUCTORS,
+                INVOKE_DECLARED_METHODS,
+                INVOKE_PUBLIC_METHODS,
+                DECLARED_FIELDS,
+                PUBLIC_FIELDS
+            )
         );
     }
 
