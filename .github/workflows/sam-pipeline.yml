@@ -45,7 +45,7 @@ jobs:
         run: echo "FULL_IMAGE_NAME=${{ env.REGISTRY }}/${{env.REPOSITORY}}:${{env.IMAGE_TAG}}" >> $GITHUB_ENV
 
       - name: Build native image
-        run: docker build . -t ${{ env.FULL_IMAGE_NAME }}
+        run: docker build --platform linux/amd64 -t ${{ env.FULL_IMAGE_NAME }} .
 
       - name: Push docker image to Amazon ECR Public
         run: docker push ${{ env.FULL_IMAGE_NAME }}

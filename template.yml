@@ -11,7 +11,7 @@ Resources:
   graalvmDemoResource:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: hop-be-function-native-image
+      FunctionName: graalvm-native-image
       PackageType: Image
       MemorySize: 512
       Timeout: 90

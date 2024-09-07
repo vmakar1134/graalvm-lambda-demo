@@ -3118,5 +3118,17 @@
 {
   "name":"sun.security.provider.SHA",
   "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+  {
+  "name": "com.amazonaws.services.lambda.runtime.api.client.AWSLambda",
+  "allDeclaredConstructors": true,
+  "allDeclaredMethods": true,
+  "allDeclaredFields": true
+},
+{
+  "name": "com.amazonaws.services.lambda.runtime.api.client.AWSLambdaClient",
+  "allDeclaredConstructors": true,
+  "allDeclaredMethods": true,
+  "allDeclaredFields": true
 }
 ]

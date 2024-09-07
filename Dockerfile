@@ -14,7 +14,7 @@ RUN chmod +x ./mvnw
 RUN ./mvnw -Pnative native:compile -DskipTests
 
 # Stage 2: Create the final AWS Lambda image with the native binary
-FROM public.ecr.aws/lambda/java:21
+FROM public.ecr.aws/amazonlinux/amazonlinux:2023-minimal
 
 # Copy the native binary from the builder stage
 COPY --from=builder /app/target/graalvm-demo /function
