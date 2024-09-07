@@ -15,6 +15,6 @@ docker run --rm `
   --env-file $envFile `
   -v ${PWD}:/workspace `
   -w /workspace `
-  -p 8081:8080 `
+  -p 8080:8080 `
   $dockerImage `
-  timeout 60s java -agentlib:native-image-agent=config-merge-dir=$outputDir -jar $jarFile
+  java -agentlib:native-image-agent=config-merge-dir=$outputDir -jar $jarFile

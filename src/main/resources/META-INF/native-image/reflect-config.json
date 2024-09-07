@@ -94,6 +94,18 @@
   "queryAllPublicMethods":true
 },
 {
+  "name":"com.amazonaws.services.lambda.runtime.api.client.AWSLambda",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true
+},
+{
+  "name":"com.amazonaws.services.lambda.runtime.api.client.AWSLambdaClient",
+  "allDeclaredFields":true,
+  "allDeclaredMethods":true,
+  "allDeclaredConstructors":true
+},
+{
   "name":"com.couchbase.client.java.Bucket"
 },
 {
@@ -687,7 +699,7 @@
 },
 {
   "name":"org.apache.coyote.AbstractProtocol",
-  "methods":[{"name":"getAddress","parameterTypes":[] }, {"name":"getLocalPort","parameterTypes":[] }, {"name":"getProperty","parameterTypes":["java.lang.String"] }, {"name":"setPort","parameterTypes":["int"] }, {"name":"setProperty","parameterTypes":["java.lang.String","java.lang.String"] }]
+  "allDeclaredMethods": true
 },
 {
   "name":"org.apache.coyote.UpgradeProtocol"
@@ -3118,17 +3130,5 @@
 {
   "name":"sun.security.provider.SHA",
   "methods":[{"name":"<init>","parameterTypes":[] }]
-},
-  {
-  "name": "com.amazonaws.services.lambda.runtime.api.client.AWSLambda",
-  "allDeclaredConstructors": true,
-  "allDeclaredMethods": true,
-  "allDeclaredFields": true
-},
-{
-  "name": "com.amazonaws.services.lambda.runtime.api.client.AWSLambdaClient",
-  "allDeclaredConstructors": true,
-  "allDeclaredMethods": true,
-  "allDeclaredFields": true
 }
 ]
