@@ -1,11 +1,14 @@
 # Stage 1: Build the native binary using GraalVM
-FROM container-registry.oracle.com/graalvm/native-image:21 as builder
+FROM container-registry.oracle.com/graalvm/native-image:21 AS builder
 
 # Set the working directory
 WORKDIR /app
 
 # Copy the project files into the builder stage
 COPY . .
+
+# Grant execution permissions to the Maven Wrapper
+RUN chmod +x ./mvnw
 
 # Build the native image
 RUN ./mvnw -Pnative native:compile -DskipTests
