@@ -97,35 +97,35 @@
       </dependencies>
       <build>
         <plugins>
-          <plugin>
-            <groupId>org.graalvm.buildtools</groupId>
-            <artifactId>native-maven-plugin</artifactId>
-            <configuration>
-              <buildArgs>
-                <buildArg>--enable-url-protocols=http</buildArg>
-                <buildArg>--enable-preview</buildArg>
-                <buildArg>-march=compatibility</buildArg>
-              </buildArgs>
-            </configuration>
-            <executions>
-              <execution>
-                <id>build-native</id>
-                <goals>
-                  <!-- compile-no-fork over build goal as per -->
-                  <!-- https://graalvm.github.io/native-build-tools/latest/ -->
-                  <goal>compile-no-fork</goal>
-                </goals>
-                <phase>package</phase>
-              </execution>
-              <execution>
-                <id>test-native</id>
-                <goals>
-                  <goal>test</goal>
-                </goals>
-                <phase>test</phase>
-              </execution>
-            </executions>
-          </plugin>
+<!--          <plugin>-->
+<!--            <groupId>org.graalvm.buildtools</groupId>-->
+<!--            <artifactId>native-maven-plugin</artifactId>-->
+<!--            <configuration>-->
+<!--              <buildArgs>-->
+<!--                <buildArg>&#45;&#45;enable-url-protocols=http</buildArg>-->
+<!--                <buildArg>&#45;&#45;enable-preview</buildArg>-->
+<!--                <buildArg>-march=compatibility</buildArg>-->
+<!--              </buildArgs>-->
+<!--            </configuration>-->
+<!--            <executions>-->
+<!--              <execution>-->
+<!--                <id>build-native</id>-->
+<!--                <goals>-->
+<!--                  &lt;!&ndash; compile-no-fork over build goal as per &ndash;&gt;-->
+<!--                  &lt;!&ndash; https://graalvm.github.io/native-build-tools/latest/ &ndash;&gt;-->
+<!--                  <goal>compile-no-fork</goal>-->
+<!--                </goals>-->
+<!--                <phase>package</phase>-->
+<!--              </execution>-->
+<!--              <execution>-->
+<!--                <id>test-native</id>-->
+<!--                <goals>-->
+<!--                  <goal>test</goal>-->
+<!--                </goals>-->
+<!--                <phase>test</phase>-->
+<!--              </execution>-->
+<!--            </executions>-->
+<!--          </plugin>-->
         </plugins>
       </build>
     </profile>
