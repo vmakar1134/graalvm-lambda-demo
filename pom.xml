@@ -33,24 +33,24 @@
     <spring-cloud.version>2022.0.5</spring-cloud.version>
   </properties>
 
-<!--  <dependencyManagement>-->
-<!--    <dependencies>-->
-<!--      <dependency>-->
-<!--        <groupId>software.amazon.awssdk</groupId>-->
-<!--        <artifactId>bom</artifactId>-->
-<!--        <version>${aws.sdk.java.version}</version>-->
-<!--        <type>pom</type>-->
-<!--        <scope>import</scope>-->
-<!--      </dependency>-->
-<!--      <dependency>-->
-<!--        <groupId>org.springframework.cloud</groupId>-->
-<!--        <artifactId>spring-cloud-dependencies</artifactId>-->
-<!--        <version>${spring-cloud.version}</version>-->
-<!--        <type>pom</type>-->
-<!--        <scope>import</scope>-->
-<!--      </dependency>-->
-<!--    </dependencies>-->
-<!--  </dependencyManagement>-->
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>software.amazon.awssdk</groupId>
+        <artifactId>bom</artifactId>
+        <version>${aws.sdk.java.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${spring-cloud.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <dependencies>
     <dependency>
@@ -63,12 +63,12 @@
       <optional>true</optional>
     </dependency>
 
-    <!-- aws -->
     <dependency>
       <groupId>com.amazonaws.serverless</groupId>
       <artifactId>aws-serverless-java-container-springboot3</artifactId>
       <version>${aws.serverless.spring.version}</version>
     </dependency>
+
   </dependencies>
 
   <build>
@@ -96,37 +96,6 @@
         </dependency>
       </dependencies>
       <build>
-        <plugins>
-<!--          <plugin>-->
-<!--            <groupId>org.graalvm.buildtools</groupId>-->
-<!--            <artifactId>native-maven-plugin</artifactId>-->
-<!--            <configuration>-->
-<!--              <buildArgs>-->
-<!--                <buildArg>&#45;&#45;enable-url-protocols=http</buildArg>-->
-<!--                <buildArg>&#45;&#45;enable-preview</buildArg>-->
-<!--                <buildArg>-march=compatibility</buildArg>-->
-<!--              </buildArgs>-->
-<!--            </configuration>-->
-<!--            <executions>-->
-<!--              <execution>-->
-<!--                <id>build-native</id>-->
-<!--                <goals>-->
-<!--                  &lt;!&ndash; compile-no-fork over build goal as per &ndash;&gt;-->
-<!--                  &lt;!&ndash; https://graalvm.github.io/native-build-tools/latest/ &ndash;&gt;-->
-<!--                  <goal>compile-no-fork</goal>-->
-<!--                </goals>-->
-<!--                <phase>package</phase>-->
-<!--              </execution>-->
-<!--              <execution>-->
-<!--                <id>test-native</id>-->
-<!--                <goals>-->
-<!--                  <goal>test</goal>-->
-<!--                </goals>-->
-<!--                <phase>test</phase>-->
-<!--              </execution>-->
-<!--            </executions>-->
-<!--          </plugin>-->
-        </plugins>
       </build>
     </profile>
   </profiles>

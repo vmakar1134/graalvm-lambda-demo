@@ -1,5 +1,0 @@
-#!/bin/sh
-
-cd ${LAMBDA_TASK_ROOT:-.}
-
-./graalvm-demo -Dlogging.level.org.springframework=TRACE -Dlogging.level.com.amazonaws.serverless.proxy.spring=TRACE

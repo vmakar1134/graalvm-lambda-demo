@@ -22,11 +22,5 @@ COPY --from=builder /build/target/graalvm-demo ${LAMBDA_TASK_ROOT}/
 # Set permission
 RUN chmod +x ${LAMBDA_TASK_ROOT}/
 
-# Copy bootstrap into dynamic lambda path
-#COPY --from=builder /build/bootstrap ${LAMBDA_TASK_ROOT}/
-
-# Set permission
-RUN chmod +x ${LAMBDA_TASK_ROOT}/
-
 # Set command to run bytecode
 CMD ["./graalvm-demo"]

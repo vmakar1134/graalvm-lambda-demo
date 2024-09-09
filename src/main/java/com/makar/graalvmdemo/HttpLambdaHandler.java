@@ -12,11 +12,11 @@ import java.io.OutputStream;
 
 public class HttpLambdaHandler implements RequestStreamHandler {
 
-    private static SpringBootLambdaContainerHandler<HttpApiV2ProxyRequest, AwsProxyResponse> HTTP_HANDLER;
+    private static SpringBootLambdaContainerHandler<HttpApiV2ProxyRequest, AwsProxyResponse> HTTP_TEST;
 
     static {
         try {
-            HTTP_HANDLER = SpringBootLambdaContainerHandler.getHttpApiV2ProxyHandler(GraalvmDemoApplication.class);
+            HTTP_TEST = SpringBootLambdaContainerHandler.getHttpApiV2ProxyHandler(GraalvmDemoApplication.class);
         } catch (ContainerInitializationException e) {
             e.printStackTrace();
             throw new RuntimeException("Could not initialize Spring Boot application", e);
@@ -25,7 +25,7 @@ public class HttpLambdaHandler implements RequestStreamHandler {
 
     @Override
     public void handleRequest(InputStream inputStream, OutputStream outputStream, Context context) throws IOException {
-        HTTP_HANDLER.proxyStream(inputStream, outputStream, context);
+        HTTP_TEST.proxyStream(inputStream, outputStream, context);
     }
 
 }
