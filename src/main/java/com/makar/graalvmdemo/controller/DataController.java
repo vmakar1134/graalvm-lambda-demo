@@ -6,6 +6,7 @@ import com.makar.graalvmdemo.entity.Product;
 import com.makar.graalvmdemo.entity.User;
 import com.makar.graalvmdemo.service.DataService;
 import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,11 +32,13 @@ public class DataController {
         return dataService.getAllProducts();
     }
 
+    @Transactional
     @GetMapping("/orders")
     public List<Order> getAllOrders() {
         return dataService.getAllOrders();
     }
 
+    @Transactional
     @GetMapping("/users/{userId}/orders")
     public List<Order> getOrdersByUserId(@PathVariable Long userId) {
         return dataService.getOrdersByUserId(userId);
