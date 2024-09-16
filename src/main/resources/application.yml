@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: jdbc:mysql://gateway01.eu-central-1.prod.aws.tidbcloud.com:4000/graalvm_demo
+    username: 44L5dMzv8pZN8Xu.root
+    password: U2vAs5GJNoZLLqJN
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+      open-in-view: false
