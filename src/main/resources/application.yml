@@ -5,6 +5,6 @@ spring:
     password: U2vAs5GJNoZLLqJN
   jpa:
     show-sql: true
+    open-in-view: false
     hibernate:
-      ddl-auto: create-drop
-      open-in-view: false
+      ddl-auto: none
