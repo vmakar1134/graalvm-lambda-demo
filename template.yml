@@ -11,7 +11,7 @@ Resources:
   graalvmDemoResource:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: graalvm-native-image
+      FunctionName: graalvm-native-image-v2
       PackageType: Image
       MemorySize: 512
       Timeout: 90
