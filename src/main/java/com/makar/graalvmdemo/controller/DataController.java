@@ -3,7 +3,7 @@ package com.makar.graalvmdemo.controller;
 
 import com.makar.graalvmdemo.entity.Order;
 import com.makar.graalvmdemo.entity.Product;
-import com.makar.graalvmdemo.entity.User;
+import com.makar.graalvmdemo.model.UserResponse;
 import com.makar.graalvmdemo.service.DataService;
 import java.util.List;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api")
 public class DataController {
-    
+
     private final DataService dataService;
 
     public DataController(DataService dataService) {
@@ -23,7 +23,7 @@ public class DataController {
     }
 
     @GetMapping("/users")
-    public List<User> getAllUsers() {
+    public List<UserResponse> getAllUsers() {
         return dataService.getAllUsers();
     }
 
@@ -43,4 +43,5 @@ public class DataController {
     public List<Order> getOrdersByUserId(@PathVariable Long userId) {
         return dataService.getOrdersByUserId(userId);
     }
+
 }

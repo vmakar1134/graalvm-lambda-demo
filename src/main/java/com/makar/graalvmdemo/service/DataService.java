@@ -2,14 +2,17 @@ package com.makar.graalvmdemo.service;
 
 import com.makar.graalvmdemo.entity.Order;
 import com.makar.graalvmdemo.entity.Product;
-import com.makar.graalvmdemo.entity.User;
+import com.makar.graalvmdemo.mapper.UserMapper;
+import com.makar.graalvmdemo.model.UserResponse;
 import com.makar.graalvmdemo.repository.OrderRepository;
 import com.makar.graalvmdemo.repository.ProductRepository;
 import com.makar.graalvmdemo.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class DataService {
     
     private final UserRepository userRepository;
@@ -18,14 +21,11 @@ public class DataService {
     
     private final OrderRepository orderRepository;
 
-    public DataService(UserRepository userRepository, ProductRepository productRepository, OrderRepository orderRepository) {
-        this.userRepository = userRepository;
-        this.productRepository = productRepository;
-        this.orderRepository = orderRepository;
-    }
+    private final UserMapper userMapper;
 
-    public List<User> getAllUsers() {
-        return userRepository.findAll();
+
+    public List<UserResponse> getAllUsers() {
+        return userMapper.toResponse(userRepository.findAll());
     }
 
     public List<Product> getAllProducts() {
